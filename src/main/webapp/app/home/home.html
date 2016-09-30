@@ -1,0 +1,58 @@
+<div ng-cloak>
+    <div class="row" style="min-height:600px">
+        <div class="col-md-4">
+            <span>
+                <img class="main-img-center" src="content/images/mblms-students.png">
+                <p class="main-text-center"><b>STUDENTS!</b> Build your portfolio to effectively communicate your career readiness and soft skill development to employers and industry organizations. The MB Employability Profile provides students the ability to document, monitor, and clearly communicate their employabil-ity and aptitude to future em-ployers and postsecondary edu-cational programs</p>
+            </span>
+        </div>
+        <div class="col-md-4">
+            <span>
+                <img class="main-img-center" src="content/images/mblms-educators.png">
+                <p class="main-text-center"><b>EDUCATORS!</b> Your focused efforts to inspire, challenge, and equip stu-dents to be successful and produc-tive citizens, prepares them to achieve at their highest level in any postsecondary endeavor. The MB Employability Profile affords school districts the opportunity to assess the effectiveness of their pro-grams in regards to industry prepar-edness and to clearly articulate the level of career readiness within their students.</p>
+            </span>
+        </div>
+        <div class="col-md-4">
+            <span>
+                <img class="main-img-center" src="content/images/mblms-employers.png">
+                <p class="main-text-center"><b>EMPLOYERS!</b> Gain a new level of confidence when hiring a new graduate! The connection between education and industry is strained by a lack of a clear definition of a student’s career readiness. The MB Employability Profile simp-ly articulates the readiness level of students, using shared knowledge and a common vocabulary, and closes the gap between industry and education.</p>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="main-llc"><b>Miens & Bearings, LLC</b>, owned and operated by educators, recognized the demand to define career readiness, and the urgency to close the gap between education and industry is greater than ever before. Systems are in place to adequately measure the level of attainment for academic and technical skills. The missing link is the system to track, assess, and clearly communicate the employability skills students mas-ter in secondary and post-secondary education. In response, Miens & Bearings, LLC developed the MB Employability Profile. Our profile uses shared knowledge and a common vocabulary to articulate a student’s development of the behaviors of highly effective employees, their academic focus, and their overall level of em-ployability. The MB Employability Profile offers employers a level of confidence when hiring a new graduate, and closes the gap between industry and education</p>
+
+            <div ng-switch="vm.isAuthenticated()">
+                <div class="alert alert-success" ng-switch-when="true">
+                    You are logged in as user "{{vm.account.login}}".
+                </div>
+
+                <div class="alert alert-warning" ng-switch-when="false">
+                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
+                </div>
+
+                <div class="alert alert-warning" ng-switch-when="false">
+                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+                </div>
+            </div>
+
+            <p>
+                If you have any question on JHipster:
+            </p>
+
+            <ul>
+                <li><a href="http://jhipster.github.io/" target="_blank">JHipster homepage</a></li>
+                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank">JHipster on Stack Overflow</a></li>
+                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank">JHipster bug tracker</a></li>
+                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank">JHipster public chat room</a></li>
+                <li><a href="https://twitter.com/java_hipster" target="_blank" >follow @java_hipster on Twitter</a></li>
+            </ul>
+
+            <p>
+                <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
+            </p>
+        </div>
+
+    </div>
+</div>

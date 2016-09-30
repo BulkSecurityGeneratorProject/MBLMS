@@ -1,0 +1,72 @@
+<div>
+    <h2>User Properties</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="user-properties.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new User Properties
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Status</span></th>
+                    <th><span>Educator</span></th>
+                    <th><span>Gpa</span></th>
+                    <th><span>Focus</span></th>
+                    <th><span>Program</span></th>
+                    <th><span>User</span></th>
+                    <th><span>School</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="userProperties in vm.userProperties track by userProperties.id">
+                    <td><a ui-sref="user-properties-detail({id:userProperties.id})">{{userProperties.id}}</a></td>
+                    <td>{{userProperties.status}}</td>
+                    <td>{{userProperties.educator}}</td>
+                    <td>{{userProperties.gpa}}</td>
+                    <td>{{userProperties.focus}}</td>
+                    <td>{{userProperties.program}}</td>
+                    <td>
+                        {{userProperties.user.id}}
+                    </td>
+                    <td>
+                        <a ui-sref="school-detail({id:userProperties.school.id})">{{userProperties.school.name}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="user-properties-detail({id:userProperties.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-properties.edit({id:userProperties.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-properties.delete({id:userProperties.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+version: '2'
+services:
+    mblms-postgresql:
+        container_name: mblms-postgresql
+        image: postgres:9.5.3
+        # volumes:
+        #     - ~/volumes/jhipster/mblms/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=mblms
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

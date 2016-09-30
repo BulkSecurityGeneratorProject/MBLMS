@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160917125144_added_entity_UserProperties.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160917125440_added_entity_School.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160919212021_added_entity_Classes.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160919213643_added_entity_Profiles.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20160917125144_added_entity_constraints_UserProperties.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160919212021_added_entity_constraints_Classes.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160919213643_added_entity_constraints_Profiles.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

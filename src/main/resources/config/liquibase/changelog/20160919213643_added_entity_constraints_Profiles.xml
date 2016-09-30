@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Profiles.
+    -->
+    <changeSet id="20160919213643-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="profiles"
+                                 constraintName="fk_profiles_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="profiles_id"
+                                 baseTableName="profiles_classes"
+                                 constraintName="fk_profiles_classes_profiles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profiles"/>
+        <addForeignKeyConstraint baseColumnNames="classes_id"
+                                 baseTableName="profiles_classes"
+                                 constraintName="fk_profiles_classes_classes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="classes"/>
+        
+    </changeSet>
+</databaseChangeLog>

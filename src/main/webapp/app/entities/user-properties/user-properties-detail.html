@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span>User Properties</span> {{vm.userProperties.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{vm.userProperties.status}}</span>
+        </dd>
+        <dt><span>Educator</span></dt>
+        <dd>
+            <span>{{vm.userProperties.educator}}</span>
+        </dd>
+        <dt><span>Gpa</span></dt>
+        <dd>
+            <span>{{vm.userProperties.gpa}}</span>
+        </dd>
+        <dt><span>Focus</span></dt>
+        <dd>
+            <span>{{vm.userProperties.focus}}</span>
+        </dd>
+        <dt><span>Program</span></dt>
+        <dd>
+            <span>{{vm.userProperties.program}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.userProperties.user.id}}
+        </dd>
+        <dt><span>School</span></dt>
+        <dd>
+            <a ui-sref="school-detail({id:vm.userProperties.school.id})">{{vm.userProperties.school.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-properties-detail.edit({id:vm.userProperties.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>
