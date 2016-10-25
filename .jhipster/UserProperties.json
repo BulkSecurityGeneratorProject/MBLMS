@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userProperties",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "school",
+            "otherEntityName": "school",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "educator",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "gpa",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "focus",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "program",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160917125144",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "user_properties",
+    "pagination": "no"
+}

@@ -38,13 +38,13 @@
                                 <span >User Properties</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" has-authority="ROLE_ADMIN" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="school" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >School</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="classes" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >Classes</span>
@@ -54,6 +54,12 @@
                             <a ui-sref="profiles" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >Profiles</span>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active" >
+                            <a ui-sref="classes" ng-click="vm.collapseNavbar()">
+                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                <span >Classes</span>
                             </a>
                         </li>
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->

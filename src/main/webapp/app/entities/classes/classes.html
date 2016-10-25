@@ -21,6 +21,9 @@
                     <th><span>ID</span></th>
                     <th><span>Name</span></th>
                     <th><span>Code</span></th>
+                    <th><span>Year</span></th>
+                    <th><span>Semester</span></th>
+                    <th><span>Summary</span></th>
                     <th><span>User</span></th>
                     <th><span>School</span></th>
                     <th></th>
@@ -31,6 +34,9 @@
                     <td><a ui-sref="classes-detail({id:classes.id})">{{classes.id}}</a></td>
                     <td>{{classes.name}}</td>
                     <td>{{classes.code}}</td>
+                    <td>{{classes.year}}</td>
+                    <td>{{classes.semester}}</td>
+                    <td>{{classes.summary}}</td>
                     <td>
                         <span ng-repeat="user in classes.users">
                             {{user.id}}{{$last ? '' : ', '}}

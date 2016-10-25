@@ -33,6 +33,17 @@ public class Classes implements Serializable {
     @Column(name = "code")
     private String code;
 
+    @NotNull
+    @Column(name = "year", nullable = false)
+    private Integer year;
+
+    @NotNull
+    @Column(name = "semester", nullable = false)
+    private Integer semester;
+
+    @Column(name = "summary")
+    private String summary;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "classes_user",
@@ -80,6 +91,45 @@ public class Classes implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public Classes year(Integer year) {
+        this.year = year;
+        return this;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getSemester() {
+        return semester;
+    }
+
+    public Classes semester(Integer semester) {
+        this.semester = semester;
+        return this;
+    }
+
+    public void setSemester(Integer semester) {
+        this.semester = semester;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public Classes summary(String summary) {
+        this.summary = summary;
+        return this;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public Set<User> getUsers() {
@@ -169,6 +219,9 @@ public class Classes implements Serializable {
             "id=" + id +
             ", name='" + name + "'" +
             ", code='" + code + "'" +
+            ", year='" + year + "'" +
+            ", semester='" + semester + "'" +
+            ", summary='" + summary + "'" +
             '}';
     }
 }

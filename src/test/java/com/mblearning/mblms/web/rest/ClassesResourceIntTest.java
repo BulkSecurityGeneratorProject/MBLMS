@@ -41,6 +41,14 @@ public class ClassesResourceIntTest {
     private static final String DEFAULT_CODE = "AAAAA";
     private static final String UPDATED_CODE = "BBBBB";
 
+    private static final Integer DEFAULT_YEAR = 1;
+    private static final Integer UPDATED_YEAR = 2;
+
+    private static final Integer DEFAULT_SEMESTER = 1;
+    private static final Integer UPDATED_SEMESTER = 2;
+    private static final String DEFAULT_SUMMARY = "AAAAA";
+    private static final String UPDATED_SUMMARY = "BBBBB";
+
     @Inject
     private ClassesRepository classesRepository;
 
@@ -77,7 +85,10 @@ public class ClassesResourceIntTest {
         Classes classes = new Classes();
         classes = new Classes()
                 .name(DEFAULT_NAME)
-                .code(DEFAULT_CODE);
+                .code(DEFAULT_CODE)
+                .year(DEFAULT_YEAR)
+                .semester(DEFAULT_SEMESTER)
+                .summary(DEFAULT_SUMMARY);
         return classes;
     }
 
@@ -104,6 +115,9 @@ public class ClassesResourceIntTest {
         Classes testClasses = classes.get(classes.size() - 1);
         assertThat(testClasses.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testClasses.getCode()).isEqualTo(DEFAULT_CODE);
+        assertThat(testClasses.getYear()).isEqualTo(DEFAULT_YEAR);
+        assertThat(testClasses.getSemester()).isEqualTo(DEFAULT_SEMESTER);
+        assertThat(testClasses.getSummary()).isEqualTo(DEFAULT_SUMMARY);
     }
 
     @Test
@@ -112,6 +126,42 @@ public class ClassesResourceIntTest {
         int databaseSizeBeforeTest = classesRepository.findAll().size();
         // set the field null
         classes.setName(null);
+
+        // Create the Classes, which fails.
+
+        restClassesMockMvc.perform(post("/api/classes")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(classes)))
+                .andExpect(status().isBadRequest());
+
+        List<Classes> classes = classesRepository.findAll();
+        assertThat(classes).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkYearIsRequired() throws Exception {
+        int databaseSizeBeforeTest = classesRepository.findAll().size();
+        // set the field null
+        classes.setYear(null);
+
+        // Create the Classes, which fails.
+
+        restClassesMockMvc.perform(post("/api/classes")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(classes)))
+                .andExpect(status().isBadRequest());
+
+        List<Classes> classes = classesRepository.findAll();
+        assertThat(classes).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkSemesterIsRequired() throws Exception {
+        int databaseSizeBeforeTest = classesRepository.findAll().size();
+        // set the field null
+        classes.setSemester(null);
 
         // Create the Classes, which fails.
 
@@ -136,7 +186,10 @@ public class ClassesResourceIntTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(classes.getId().intValue())))
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-                .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())));
+                .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
+                .andExpect(jsonPath("$.[*].year").value(hasItem(DEFAULT_YEAR)))
+                .andExpect(jsonPath("$.[*].semester").value(hasItem(DEFAULT_SEMESTER)))
+                .andExpect(jsonPath("$.[*].summary").value(hasItem(DEFAULT_SUMMARY.toString())));
     }
 
     @Test
@@ -151,7 +204,10 @@ public class ClassesResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(classes.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()));
+            .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
+            .andExpect(jsonPath("$.year").value(DEFAULT_YEAR))
+            .andExpect(jsonPath("$.semester").value(DEFAULT_SEMESTER))
+            .andExpect(jsonPath("$.summary").value(DEFAULT_SUMMARY.toString()));
     }
 
     @Test
@@ -173,7 +229,10 @@ public class ClassesResourceIntTest {
         Classes updatedClasses = classesRepository.findOne(classes.getId());
         updatedClasses
                 .name(UPDATED_NAME)
-                .code(UPDATED_CODE);
+                .code(UPDATED_CODE)
+                .year(UPDATED_YEAR)
+                .semester(UPDATED_SEMESTER)
+                .summary(UPDATED_SUMMARY);
 
         restClassesMockMvc.perform(put("/api/classes")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -186,6 +245,9 @@ public class ClassesResourceIntTest {
         Classes testClasses = classes.get(classes.size() - 1);
         assertThat(testClasses.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testClasses.getCode()).isEqualTo(UPDATED_CODE);
+        assertThat(testClasses.getYear()).isEqualTo(UPDATED_YEAR);
+        assertThat(testClasses.getSemester()).isEqualTo(UPDATED_SEMESTER);
+        assertThat(testClasses.getSummary()).isEqualTo(UPDATED_SUMMARY);
     }
 
     @Test

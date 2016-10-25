@@ -29,6 +29,18 @@
                 <constraints nullable="true" />
             </column>
             
+            <column name="year" type="integer">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="semester" type="integer">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="summary" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
             <column name="school_id" type="bigint">
                 <constraints nullable="true" />
             </column>

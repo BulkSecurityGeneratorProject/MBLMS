@@ -5,9 +5,9 @@
         .module('mblmsApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'UserProperties'];
 
-    function HomeController ($scope, Principal, LoginService, $state) {
+    function HomeController ($scope, Principal, LoginService, $state, UserProperties) {
         var vm = this;
 
         vm.account = null;
@@ -24,6 +24,10 @@
             Principal.identity().then(function(account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
+                return account;
+            }).then(function(account){
+                if(account != null)
+//                    vm.userProprties = UserProperties.get({"id":"1"});
             });
         }
         function register () {

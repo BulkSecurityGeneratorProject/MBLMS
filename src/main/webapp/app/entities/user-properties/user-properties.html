@@ -7,7 +7,7 @@
                 <button class="btn btn-primary" ui-sref="user-properties.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new User Properties
+                        Create new Student Summary
                     </span>
                 </button>
             </div>
@@ -20,7 +20,6 @@
                 <tr>
                     <th><span>ID</span></th>
                     <th><span>Status</span></th>
-                    <th><span>Educator</span></th>
                     <th><span>Gpa</span></th>
                     <th><span>Focus</span></th>
                     <th><span>Program</span></th>
@@ -33,12 +32,11 @@
                 <tr ng-repeat="userProperties in vm.userProperties track by userProperties.id">
                     <td><a ui-sref="user-properties-detail({id:userProperties.id})">{{userProperties.id}}</a></td>
                     <td>{{userProperties.status}}</td>
-                    <td>{{userProperties.educator}}</td>
                     <td>{{userProperties.gpa}}</td>
                     <td>{{userProperties.focus}}</td>
                     <td>{{userProperties.program}}</td>
                     <td>
-                        {{userProperties.user.id}}
+                        {{userProperties.user.login}}
                     </td>
                     <td>
                         <a ui-sref="school-detail({id:userProperties.school.id})">{{userProperties.school.name}}</a>

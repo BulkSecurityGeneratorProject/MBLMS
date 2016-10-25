@@ -2,12 +2,11 @@ package com.mblearning.mblms.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mblearning.mblms.domain.UserProperties;
-
 import com.mblearning.mblms.repository.UserPropertiesRepository;
+import com.mblearning.mblms.repository.UserRepository;
 import com.mblearning.mblms.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +26,12 @@ import java.util.Optional;
 public class UserPropertiesResource {
 
     private final Logger log = LoggerFactory.getLogger(UserPropertiesResource.class);
-        
+
     @Inject
     private UserPropertiesRepository userPropertiesRepository;
+
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /user-properties : Create a new userProperties.
@@ -47,7 +49,13 @@ public class UserPropertiesResource {
         if (userProperties.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("userProperties", "idexists", "A new userProperties cannot already have an ID")).body(null);
         }
+
+        // set associated user to current logged in user
+        //User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+        //userProperties.setUser(user);
+
         UserProperties result = userPropertiesRepository.save(userProperties);
+
         return ResponseEntity.created(new URI("/api/user-properties/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("userProperties", result.getId().toString()))
             .body(result);
@@ -91,6 +99,28 @@ public class UserPropertiesResource {
         List<UserProperties> userProperties = userPropertiesRepository.findAll();
         return userProperties;
     }
+
+    /**
+     * GET  /user-properties-login/:login : get the "login" userProperties.
+     *
+     * @param login the login of the userProperties to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the userProperties, or with status 404 (Not Found)
+     */
+    @RequestMapping(value = "/user-properties-login/{login}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<UserProperties> getUserProperties(@PathVariable String login) {
+        log.debug("REST request to get UserProperties : {}", login);
+  //      UserProperties userProperties = userPropertiesRepository.findOne(id);
+        UserProperties userProperties = userPropertiesRepository.findOneByUserLogin(login);
+        return Optional.ofNullable(userProperties)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
 
     /**
      * GET  /user-properties/:id : get the "id" userProperties.

@@ -97,6 +97,9 @@
                             return {
                                 name: null,
                                 code: null,
+                                year: null,
+                                semester: null,
+                                summary: null,
                                 id: null
                             };
                         }

@@ -2,12 +2,10 @@ package com.mblearning.mblms.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.mblearning.mblms.domain.Profiles;
-
 import com.mblearning.mblms.repository.ProfilesRepository;
 import com.mblearning.mblms.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +26,7 @@ import java.util.Optional;
 public class ProfilesResource {
 
     private final Logger log = LoggerFactory.getLogger(ProfilesResource.class);
-        
+
     @Inject
     private ProfilesRepository profilesRepository;
 
@@ -89,7 +87,8 @@ public class ProfilesResource {
     @Timed
     public List<Profiles> getAllProfiles() {
         log.debug("REST request to get all Profiles");
-        List<Profiles> profiles = profilesRepository.findAllWithEagerRelationships();
+//        List<Profiles> profiles = profilesRepository.findAllWithEagerRelationships();
+        List<Profiles> profiles = profilesRepository.findByUserIsCurrentUser();
         return profiles;
     }
 
