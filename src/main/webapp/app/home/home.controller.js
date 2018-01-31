@@ -25,10 +25,11 @@
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
                 return account;
-            }).then(function(account){
-                if(account != null)
-//                    vm.userProprties = UserProperties.get({"id":"1"});
             });
+ //           .then(function(account){
+//                if(account != null)
+//                    vm.userProprties = UserProperties.get({"id":"1"});
+//            });
         }
         function register () {
             $state.go('register');
